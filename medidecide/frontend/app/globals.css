@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --scrollbar-track: #161B22;
+    --scrollbar-thumb: #30363D;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar { width: 6px; height: 6px; }
+  *::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  *::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  
+  /* Risk level colours as utility shortcuts */
+  .risk-low    { @apply text-risk-low-text bg-risk-low-bg; }
+  .risk-medium { @apply text-risk-medium-text bg-risk-medium-bg; }
+  .risk-high   { @apply text-risk-high-text bg-risk-high-bg; }
+  .risk-critical { @apply text-risk-critical-text bg-risk-critical-bg; }
+}
