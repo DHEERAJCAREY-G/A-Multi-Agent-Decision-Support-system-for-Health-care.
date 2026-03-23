@@ -4,7 +4,7 @@ from sqlalchemy import Integer, String, DateTime, func
 from datetime import datetime
 from typing import AsyncGenerator
 
-DATABASE_URL = "postgresql+asyncpg://postgres:#Jesus3269440@db.wliojpxbvcxomwpipxoq.supabase.co:5432/postgres"
+DATABASE_URL = "postgresql+asyncpg://postgres.wliojpxbvcxomwpipxoq:#Jesus3269440@aws-1-ap-south-1.pooler.supabase.com:5432/postgres"
 
 engine = create_async_engine(DATABASE_URL, echo=False)
 SessionLocal = async_sessionmaker(engine, expire_on_commit=False)
