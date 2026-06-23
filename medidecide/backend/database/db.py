@@ -1,10 +1,23 @@
+import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, DateTime, func
 from datetime import datetime
 from typing import AsyncGenerator
 
-DATABASE_URL = "postgresql+asyncpg://postgres.wliojpxbvcxomwpipxoq:#Jesus3269440@aws-1-ap-south-1.pooler.supabase.com:5432/postgres"
+# Load database URL from environment variable, fallback to hardcoded URL
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql://postgres.fvbpjvsozvaiddobavam:#Dheerajcarey326@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres"
+)
+
+
+# Convert connection protocol if necessary for asyncpg compatibility
+if DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+elif DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+asyncpg://", 1)
+
 
 engine = create_async_engine(DATABASE_URL, echo=False)
 SessionLocal = async_sessionmaker(engine, expire_on_commit=False)
